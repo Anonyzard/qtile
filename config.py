@@ -63,7 +63,7 @@ logout = lazy.spawn(home+"/.config/qtile/session/logout.sh") # a rofi script to 
 barBackground = "#1d2021"
 primaryColor = "#eee0b7"
 secondaryColor = "#111111"
-wallpaper= "1041.png" # /path/to/image
+wallpaper= home+"/.config/1041.png" # /path/to/image
 
 
 keys = [
@@ -76,6 +76,7 @@ keys = [
     Key([mod], "i", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "c", lazy.layout.next(), desc="Move window focus to other window"),
     Key([mod], "space", lazy.spawn("rofi -show-icons -show drun"), desc="Launch rofi"),
+    #Key(["mod1"], "Tab", lazy.spawn("notify-send 'Alt+Tab'")),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "j", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -169,7 +170,7 @@ screens = [
         # bottom=subprocess.run(["tint2"]), # Using tint2
         bottom=bar.Bar(
             [
-                widget.CurrentLayoutIcon(background=barBackground),
+                widget.CurrentLayoutIcon(background=barBackground,mouse_callbacks={"Button1": lazy.spawn("rofi -show-icons -show drun"), "Button3": lazy.next_layout()}),
                 widget.GroupBox(highlight_method="block",background=barBackground),
                 widget.Prompt(background=barBackground),
                 widget.WindowName(background=barBackground),
@@ -191,7 +192,7 @@ screens = [
                 # widget.QuickExit(background=barBackground,default_text='',fontsize=30, countdown_format='[{}\nseconds]'),
                 widget.TextBox("",fontsize=30,background=barBackground,mouse_callbacks={"Button1": logout}),
             ],
-            34,#24,
+            28,#34,#24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -203,7 +204,7 @@ screens = [
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag(["control"], "Button1", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag(["control"], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 

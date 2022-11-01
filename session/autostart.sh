@@ -6,7 +6,7 @@ setxkbmap latam
 fi
 
 # rofi -dmenu -p "Bienvenido" -theme-str "listview{ lines: 0;}" &
-
+dunst &
 # Polkit
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
@@ -22,3 +22,10 @@ fi
 lxqt-powermanagement &
 nm-applet &
 volctl &
+
+
+#alttab
+alttcolor="#eee0b7"
+alttbg="#1d2021"
+alttfg="#ffffff"
+alttab -fg $alttfg -bg $alttbg -frame $alttcolor -inact $alttcolor -t 400x30 -i 64x64 -w 1  -vertical -bc $alttcolor -bw 3
