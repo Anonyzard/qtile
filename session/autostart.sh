@@ -8,7 +8,8 @@ fi
 # rofi -dmenu -p "Bienvenido" -theme-str "listview{ lines: 0;}" &
 dunst &
 # Polkit
-/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+lxpolkit &
 
 # gnome-keyring
 /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
@@ -16,14 +17,14 @@ dunst &
 /usr/bin/gnome-keyring-daemon --start --components=ssh &
 
 #picom --experimental-backends & # Picom with blur
-#feh --bg-fill /usr/share/backgrounds/1586.jpg & # Wallpaper with feh
+#feh --bg-fill /usr/share/lxde/wallpapers/1681.jpg & # Wallpaper with feh
 # /usr/lib/notification-daemon-1.0/notification-daemon -r &
 
-lxqt-powermanagement &
-nm-applet &
+cbatticon -x /home/anonyzard/shbat &
+cmst -m &
 volctl &
 
-
+backlight-brightness -s 10
 #alttab
 alttcolor="#eee0b7"
 alttbg="#1d2021"

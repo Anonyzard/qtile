@@ -16,20 +16,20 @@ selected="$(echo -e "$options" | rofi -theme-str  "inputbar{ children: [prompt];
 case $selected in
     $option0)
         # loginctl kill-session $(loginctl list-sessions | grep $USER);;
-        loginctl terminate-user $USER;;
+        sudo loginctl terminate-user $USER;;
     $option1)
         i3lock -c 000000;;
     $option2)
-        loginctl suspend;;
+        sudo loginctl suspend;;
     $option3)
         systemctl hibernate;;
     $option4)
         systemctl hybrid-sleep;;
     $option5)
-        reboot;;
+        sudo reboot;;
         # loginctl reboot;;
     $option6)
-        shutdown now;;
+        sudo shutdown now;;
         # loginctl poweroff;;
 esac
 # This script is a fork of

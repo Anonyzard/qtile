@@ -58,13 +58,14 @@ terminal = guess_terminal() # set your terminal, guess_terminal() for default
 calendar = "gsimplecal" # set your app for calendar
 soundctl = "pavucontrol" # set your app mixer if you don´t use volctl
 logout = lazy.spawn(home+"/.config/qtile/session/logout.sh") # a rofi script to logout
-
+#logout = lazy.spawn("lxsession-logout -b /usr/share/lxde/images/logout-banner.png -s top")
 #Theme 
-barBackground = "#1d2021"
+#barBackground = "#1d2021"
+barBackground = "#000000"
 primaryColor = "#eee0b7"
 secondaryColor = "#111111"
-wallpaper= home+"/.config/1041.png" # /path/to/image
-
+#wallpaper= home+"/.config/1041.png" # /path/to/image
+wallpaper="/usr/share/lxde/wallpapers/17-3.jpg"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -106,13 +107,15 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     # Sound
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ toogle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("/home/anonyzard/notify-sound volume dec")), #"pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("/home/anonyzard/notify-sound volume inc")), #"pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    Key([], "XF86AudioMute", lazy.spawn("/home/anonyzard/notify-sound volume mute")), #"pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")), # systemd
+    #Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")), # systemd
+    Key([], "XF86MonBrightnessUp", lazy.spawn("/home/anonyzard/notify-sound brightness inc")),#"backlight-brightness +5")), # Loc-OS
     # Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")), #no-systemd 
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5-%")), #systemd
+    #Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5-%")), #systemd
+    Key([], "XF86MonBrightnessDown", lazy.spawn("/home/anonyzard/notify-sound brightness dec")),#"backlight-brightness -5")), # Loc-OS
     # Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")), #no-systemd 
 ]
 
@@ -159,7 +162,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
+    font="sans",# "sans",
     fontsize=12,
     padding=3,
 )
